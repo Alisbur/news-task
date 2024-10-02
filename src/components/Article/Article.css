@@ -15,8 +15,7 @@
   margin: 0;
   width: 100%;
   font-size: 18px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow-wrap: break-word;
 }
 
 .article__text {
