@@ -1,4 +1,4 @@
-.addArticle {
+.editArticle {
   background-color: white;
   margin: 0;
   width: 100%;
@@ -14,13 +14,13 @@
   box-sizing: border-box;
 }
 
-.addArticle__title {
+.editArticle__title {
   margin: 0;
   width: 100%;
   font-size: 18px;
 }
 
-.addArticle__fieldset {
+.editArticle__fieldset {
   margin: 0;
   padding: 10px;
   box-sizing: border-box;
@@ -33,11 +33,11 @@
   gap: 10px;
 }
 
-.addArticle__hint {
+.editArticle__hint {
   font-size: 14px;
 }
 
-.addArticle__titleInput {
+.editArticle__titleInput {
   width: 100%;
   border: none;
   border-bottom: 1px solid gray;
@@ -46,7 +46,7 @@
   box-sizing: border-box;
 }
 
-.addArticle__textarea {
+.editArticle__textarea {
   width: 100%;
   background-color: transparent;
   border: 1px solid gray;
@@ -57,7 +57,7 @@
   box-sizing: border-box;
 }
 
-.addArticle__controls {
+.editArticle__controls {
   width: 100%;
   display: flex;
   justify-content: flex-end;

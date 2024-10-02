@@ -13,7 +13,7 @@ export const AddArticle = ({onAdd, onClose}) => {
   }
 
   return (
-    <form className="addArticle" onSubmit={submit}>
+    <form className="addArticle" onSubmit={submit} >
       <h2 className="addArticle__title">Дабавление новости</h2>
       <fieldset className="addArticle__fieldset">
         <label className="addArticle__hint">Название: </label>
