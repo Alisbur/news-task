@@ -18,7 +18,7 @@ export const Article = ({id, title, text, onEdit, onDelete}) => {
           ? <>
               <button 
                 type="button"
-                disabled={!itemText || !itemTitle}
+                disabled={!itemText || !itemTitle || (text === itemText && title === itemTitle)}
                 onClick={()=>{
                   onEdit(id, itemTitle, itemText); 
                   setIsEditable(false);
