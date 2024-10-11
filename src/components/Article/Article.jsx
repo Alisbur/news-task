@@ -4,13 +4,15 @@ import { createPortal } from 'react-dom';
 import { Modal } from "../Modal/Modal";
 import { EditArticle } from "../EditArticle/EditArticle";
 
-export const Article = ({id, title, text, onEdit, onDelete}) => {
+export const Article = ({id, type, data, elements, onEdit, onDelete}) => {
   const [isEditable, setIsEditable] = useState(false);
-
+  
   return (
     <article className="article">
-      <h3 className="article__title" title={title}>{title}</h3>
-      <div className="article__text">{text}</div>
+      {Object.keys(elements).map(key => {
+        if(key==="title") return <h3 className="article__title" >{data[key]}</h3>
+        else return <div className="article__text">{data[key]}</div>
+        })}
       <div className="article__controls">
 
         <button 
@@ -30,8 +32,8 @@ export const Article = ({id, title, text, onEdit, onDelete}) => {
       {isEditable && createPortal(
         <Modal onClose={()=>setIsEditable(false)}>
           <EditArticle 
-            title={title} 
-            text={text} 
+            type={type}
+            data={data} 
             id={id} 
             onEdit={onEdit} 
             onClose={() => setIsEditable(false)} />

@@ -1,4 +1,4 @@
-.App {
+.tab {
   margin: 0 auto;
   width: 100%;
   max-width: 800px;
@@ -10,14 +10,4 @@
   gap: 20px;
   padding: 40px;
   box-sizing: border-box;
-}
-
-.header {
-  max-width: 800px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 50px;
-  font-size: 24px;
-  gap: 40px;
 }
