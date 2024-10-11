@@ -5,33 +5,25 @@ import { AddArticle } from "../AddArticle/AddArticle";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { Modal } from "../Modal/Modal";
 import { createPortal } from 'react-dom';
+import { tabs } from "../../shared/constants/fields";
+import { Routes, Route } from "react-router-dom";
+import { Tab } from "../Tab/Tab";
 
 function App() {
-  const { news, addItem, deleteItem, editItem } = useLocalStorage("news");
-  const [addArticle, setAddArticle] = useState(false);
-
   return (
     <div className="App">
-        <h1>Новости</h1>
-        <button type="button" onClick={() => setAddArticle(true)}>
-          Добавить новость
-        </button>
-        {addArticle && createPortal( 
-          (<Modal onClose={() => setAddArticle(false)}>
-            <AddArticle onAdd={addItem} onClose={() => setAddArticle(false)} />
-          </Modal>), document.body)}
-        {news.map((el) => (
-          <Article
-            key={el.id}
-            id={el.id}
-            title={el.title}
-            text={el.text}
-            onEdit={editItem}
-            onDelete={deleteItem}
-          />
-        ))}
+      <div className="header">
+        {tabs.map(({name, title}, i) => <a key={i} href={`/${name}`}>{title}</a>)}
+      </div>
+      <Routes>
+        {tabs.map(({name, title}, i) => {console.log(name, title); return <Route key={i} path={`/${name}`} element={<Tab type={name} title={title}/>} />})}
+      </Routes>
     </div>
   );
 }
 
 export default App;
+
+{/* <div style={{width: "100px", height: "100px", backgroundColor: "red"}}/> */}
+
+{/* <Tab type={t.name} title={t.title}/> */}
