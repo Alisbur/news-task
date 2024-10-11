@@ -1,20 +1,36 @@
 import React, {useState} from "react";
 import "./AddArticle.css";
+import { fields } from "../../shared/constants/fields";
 
-export const AddArticle = ({onAdd, onClose}) => {
+export const AddArticle = ({type, onAdd, onClose}) => {
 
-  const [itemText, setItemText] = useState("");
-  const [itemTitle, setItemTitle] = useState("");
+  const [itemData, setItemData] = useState({});
+  // const [itemText, setItemText] = useState("");
+  // const [itemTitle, setItemTitle] = useState("");
 
   const submit = (e) => {
     e.preventDefault();
-    onAdd(itemTitle, itemText);
+    onAdd(itemData);
     onClose();
   }
 
   return (
     <form className="addArticle" onSubmit={submit} >
       <h2 className="addArticle__title">Дабавление новости</h2>
+      {Object.keys(fields[type]).map((key) => (
+          <fieldset className="editArticle__fieldset">
+            <label className="editArticle__hint">{fields[type][key]}</label>
+            <input
+              type="text" 
+              className="editArticle__titleInput" 
+              value={itemData[key]}
+              onChange={(e)=>setItemData({...itemData, [key]: e.target.value})} 
+          />
+          </fieldset>
+        ))}
+
+{/* 
+
       <fieldset className="addArticle__fieldset">
         <label className="addArticle__hint">Название: </label>
         <input
@@ -31,16 +47,16 @@ export const AddArticle = ({onAdd, onClose}) => {
           value={itemText} 
           onChange={(e)=>setItemText(e.target.value)} 
         />
-      </fieldset>
+      </fieldset> */}
       <div className="addArticle__controls">
         <button 
           type="submit"
-          disabled={!itemText || !itemTitle}
+          // disabled={!itemText || !itemTitle}
         >Save
         </button>
         <button 
           type="button" 
-          onClick={()=>{setItemText(onClose)}}
+          onClick={()=>{onClose()}}
         >Cancel
         </button>
       </div>

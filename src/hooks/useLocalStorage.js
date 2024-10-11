@@ -9,11 +9,10 @@ export function useLocalStorage(key) {
     getAllNewsFromLocalStorage(key);
   }, [])
 
-  const addItem = (title, text) => {
+  const addItem = (data) => {
     const newsItems = [{
       id: Date.now(), 
-      title: title.trim().slice(0,TEXT_LENGTHS.title), 
-      text: text.trim().slice(0,TEXT_LENGTHS.text)}, ...news]
+      ...data}, ...news]
     localStorage.setItem(key, JSON.stringify(newsItems));
     setNews(newsItems);
   }
@@ -22,7 +21,7 @@ export function useLocalStorage(key) {
     const newsItems = news.filter(item=>item.id !== id);
     if(!newsItems.length) {
       setNews([]);
-      localStorage.clear();
+      localStorage.removeItem(key);
     }
     else {
       localStorage.setItem(key, JSON.stringify(newsItems));
@@ -30,13 +29,12 @@ export function useLocalStorage(key) {
     }
   }
 
-  const editItem = (id, title, text) => {
+  const editItem = (id, data) => {
     const newsItems = news.map(item=>{
       return item.id === id 
         ? {
-            id, 
-            title: title.trim().slice(0,TEXT_LENGTHS.title), 
-            text: text.trim().slice(0,TEXT_LENGTHS.text)
+            id,
+            ...data,
           } 
         : item});
     localStorage.setItem(key, JSON.stringify(newsItems));
